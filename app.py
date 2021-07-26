@@ -42,11 +42,12 @@ status = read_csv('status.csv', index_col=0)
 #end import
 
 if option=='Locations of Grand Prix':
-#     chart_data = pd.DataFrame(
-#     np.random.randn(20, 3),
-#     columns=['a', 'b', 'c'])
+     chart_data = pd.DataFrame(
+     np.random.randn(20, 3),
+     columns=['a', 'b', 'c'])
 
-# #     st.line_chart(chart_data)
+     st.line_chart(chart_data)
+    
 #     wmap_data = pd.DataFrame(
 #     columns=['lat', 'lon'])
 #     wmap_data.lat = circuits['lat']
