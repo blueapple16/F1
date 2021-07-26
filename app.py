@@ -5,19 +5,18 @@ import numpy as np
 import pandas as pd
 import time
 
-st.header("My first Python Web App")
+st.header("My F1 Python Web App")
 
 readme = st.checkbox("readme first!")
 
 if readme:
 
     st.write("""
-        This is a web app demo using [streamlit](https://streamlit.io/) library. It is hosted in [heroku](https://www.heroku.com/). You may get the codes via [github](https://github.com/richieyuyongpoh/myfirstapp)
-        """)
+        This is a web app demo using [streamlit](https://streamlit.io/) library. It is hosted in [Streamlit Sharing](https://share.streamlit.io/). You may get the codes via [github](https://github.com/blueapple16/F1)
 
     st.write ("For more info, please contact:")
 
-    st.write("<a href='https://www.linkedin.com/in/yong-poh-yu/'>Dr. Yong Poh Yu </a>", unsafe_allow_html=True)
+    st.write("<a href='https://www.linkedin.com/in/kah-wee-lim-02836a76/'> Kah Wee </a>", unsafe_allow_html=True)
 
 option = st.sidebar.selectbox(
     'Select a mini project',
