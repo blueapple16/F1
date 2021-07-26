@@ -47,12 +47,12 @@ if option=='Locations of Grand Prix':
 #     columns=['a', 'b', 'c'])
 
 #     st.line_chart(chart_data)
-    map_data = pd.DataFrame(
+    wmap_data = pd.DataFrame(
     columns=['lat', 'lon'])
-    map_data.lat = circuits['lat']
-    map_data.lon = circuits['lng']
+    wmap_data.lat = circuits['lat']
+    wmap_data.lon = circuits['lng']
 
-    st.map(map_data)
+    st.map(wmap_data)
 
 
 
