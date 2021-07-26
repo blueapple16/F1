@@ -19,7 +19,7 @@ if readme:
 
 option = st.sidebar.selectbox(
     'Select an option',
-     ['FY 2021 Championship Standings','map','T n C','Long Process'])
+     ['Locations of Grand Prix','map','T n C','Long Process'])
 
 #import database
 import matplotlib.pyplot as plt
