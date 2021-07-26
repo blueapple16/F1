@@ -1,4 +1,3 @@
-  
 import streamlit as st
 
 import numpy as np
@@ -19,16 +18,45 @@ if readme:
     st.write("<a href='https://www.linkedin.com/in/kah-wee-lim-02836a76/'> Kah Wee </a>", unsafe_allow_html=True)
 
 option = st.sidebar.selectbox(
-    'Select a mini project',
-     ['line chart','map','T n C','Long Process'])
+    'Select an option',
+     ['FY 2021 Championship Standings','map','T n C','Long Process'])
+
+#import database
+import matplotlib.pyplot as plt
+from IPython.display import HTML, display
+import urllib
+
+circuits = read_csv('circuits.csv', index_col=0)
+constructorResults = read_csv('constructor_results.csv', index_col=0)
+constructors = read_csv('constructors.csv', index_col=0)
+constructorStandings = read_csv('constructor_standings.csv', index_col=0)
+drivers = read_csv('drivers.csv', index_col=0)
+driverStandings = read_csv('driver_standings.csv', index_col=0)
+lapTimes = read_csv('lap_times.csv')
+pitStops = read_csv('pit_stops.csv')
+qualifying = read_csv('qualifying.csv', index_col=0)
+races = read_csv('races.csv', index_col=0)
+results = read_csv('results.csv', index_col=0)
+seasons = read_csv('seasons.csv', index_col=0)
+status = read_csv('status.csv', index_col=0)
+#end import
+
+if option=='Locations of Grand Prix':
+#     chart_data = pd.DataFrame(
+#     np.random.randn(20, 3),
+#     columns=['a', 'b', 'c'])
+
+#     st.line_chart(chart_data)
+map_data = pd.DataFrame(
+    columns=['lat', 'lon'])
+map_data.lat = circuits['lat']
+map_data.lon = circuits['lng']
+
+    st.map(map_data)
 
 
-if option=='line chart':
-    chart_data = pd.DataFrame(
-    np.random.randn(20, 3),
-    columns=['a', 'b', 'c'])
 
-    st.line_chart(chart_data)
+#ori below
 
 elif option=='map':
     map_data = pd.DataFrame(
