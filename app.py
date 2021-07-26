@@ -1,21 +1,23 @@
+  
 import streamlit as st
 
 import numpy as np
 import pandas as pd
 import time
 
-st.header("My F1 Python Web App")
+st.header("My first Python Web App")
 
 readme = st.checkbox("readme first!")
 
 if readme:
 
     st.write("""
-        This is a web app demo using [streamlit](https://streamlit.io/) library. It is hosted in [Streamlit Sharing](https://share.streamlit.io/). You may get the codes via [github](https://github.com/blueapple16/F1)
+        This is a web app demo using [streamlit](https://streamlit.io/) library. It is hosted in [heroku](https://www.heroku.com/). You may get the codes via [github](https://github.com/richieyuyongpoh/myfirstapp)
+        """)
 
     st.write ("For more info, please contact:")
 
-    st.write("<a href='https://www.linkedin.com/in/kah-wee-lim-02836a76/'> Kah Wee </a>", unsafe_allow_html=True)
+    st.write("<a href='https://www.linkedin.com/in/yong-poh-yu/'>Dr. Yong Poh Yu </a>", unsafe_allow_html=True)
 
 option = st.sidebar.selectbox(
     'Select a mini project',
@@ -28,7 +30,14 @@ if option=='line chart':
     columns=['a', 'b', 'c'])
 
     st.line_chart(chart_data)
-    
+
+elif option=='map':
+    map_data = pd.DataFrame(
+    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
+    columns=['lat', 'lon'])
+
+    st.map(map_data)
+
 elif option=='T n C':
 
     st.write('Before you continue, please read the [terms and conditions](https://www.gnu.org/licenses/gpl-3.0.en.html)')
