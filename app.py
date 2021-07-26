@@ -120,3 +120,47 @@ def format_results(df):
     df = df.set_index('Position')
     df.columns = df.columns.str.capitalize()
     return df
+plt.rc("figure", figsize=(16, 12))
+plt.rc("font", size=(14))
+plt.rc("axes", xmargin=0)
+
+display(HTML(
+    f'<h1 id="drivers">Formula One Drivers\' World Championship &mdash; {YEAR}</h1>'
+))
+
+# Championship position traces
+champ = driverStandings.groupby("driverId").position.last().to_frame("Pos")
+champ = champ.join(drivers)
+order = np.argsort(champ.Pos)
+
+color = [DRIVER_C[d] for d in champ.index[order]]
+style = [LINESTYLES[DRIVER_LS[d]] for d in champ.index[order]]
+labels = champ.Pos.astype(str) + ". " + champ.display
+
+chart = driverStandings.pivot("raceKey", "driverId", "points")
+names = races.set_index("raceKey").reindex(chart.index).name
+names = names.str.replace("Grand Prix", "GP").rename("Race")
+chart.index = names
+chart.columns = labels
+
+# Add origin
+row = chart.iloc[0]
+chart = pd.concat(((row * 0).to_frame("").T, chart))
+
+chart.iloc[:, order].plot(title=f"F1 Drivers\' World Championship — {YEAR}", color=color, style=style)
+plt.xticks(range(chart.shape[0]), chart.index, rotation=45)
+plt.grid(axis="x", linestyle="--")
+plt.ylabel("Points")
+legend_opts = dict(bbox_to_anchor=(1.02, 0, 0.2, 1),
+                   loc="upper right",
+                   ncol=1,
+                   shadow=True,
+                   edgecolor="black",
+                   mode="expand",
+                   borderaxespad=0.)
+plt.legend(**legend_opts)
+plt.tight_layout()
+plt.show()
+
+display(HTML(f"<h2>Results</h2>"))
+display(drivers_standings(driverStandings.loc[driverStandings.index.max()].set_index("driverId")).style)
